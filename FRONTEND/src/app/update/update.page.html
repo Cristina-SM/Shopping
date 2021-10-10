@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Products</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list lines="full">
+    <form [formGroup]="updateProductFg" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="name" type="text" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Cantidad</ion-label>
+        <ion-input formControlName="lot" type="text" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="item">
+        <ion-label>Image:</ion-label>
+        <ion-icon class="photo" name="image" (click)="photoService.addNewToGallery()"></ion-icon>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" *ngFor="let photo of photoService.photos; index as position">
+              <ion-img formControlName="image" [src]="photo.webviewPath"></ion-img>
+              <ion-icon name="trash" style="zoom:2;fill:rgb(255, 255, 255);"
+                (click)="photoService.deletePicture(photo, position)"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="success" expand="block">Update</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-list>
+</ion-content>

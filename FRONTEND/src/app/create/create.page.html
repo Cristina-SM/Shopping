@@ -1,0 +1,37 @@
+<ion-header class="header">
+  <ion-toolbar class="toolbar">
+    <ion-title class="title">Añade nuevos productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="body">
+    <form [formGroup]="ProductsForm" (ngSubmit)="onSubmit()">
+      <ion-list>
+        <ion-item class="item">
+          <ion-label>Nombre:</ion-label>
+          <ion-input formControlName="name" type="text" required>
+          </ion-input>
+        </ion-item>
+  
+        <ion-item class="item">
+          <ion-label>Cantidad:</ion-label>
+          <ion-input formControlName="lot" type="text" required>
+          </ion-input>
+        </ion-item>
+  
+        <ion-item class="item">
+          <ion-label>Image:</ion-label>
+          <ion-icon class="photo" name="image" (click)="photoService.addNewToGallery()"></ion-icon>
+            <ion-grid>
+             <ion-row>
+               <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+                 <ion-img [src]="photo.webviewPath">
+                 </ion-img>
+                 <ion-icon name="trash" style="zoom:2;fill:rgb(255, 255, 255);" (click)="photoService.deletePicture(photo, position)"></ion-icon>
+               </ion-col>
+             </ion-row>
+           </ion-grid>
+        </ion-item>
+        <ion-button type="submit"  color="danger" expand="block">Añadir</ion-button>
+      </ion-list>
+    </form>
+</ion-content>

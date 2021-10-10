@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nevera Online</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item *ngFor="let product of Products">
+    <ion-label>
+      <h3>Nombre: {{product.name}}</h3>
+      <h3>Cantidad: {{product.lot}}</h3>
+      <img src = {{product.image}}/>
+    </ion-label>
+    <ion-icon name="create" style="zoom:1;fill:white;background-color: rgba(255, 255, 255, 0);" 
+      [routerLink]="['/update/', product.id]"></ion-icon>
+    <ion-icon name="trash" style="zoom:1;fill:white;background-color: rgba(255, 255, 255, 0);"
+      (click)="removeProduct(product)"></ion-icon>
+  </ion-item>
+</ion-content>
